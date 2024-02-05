@@ -1,0 +1,9 @@
+# Ignore build artifacts and executables
+*.o
+*.out
+*.exe
+*.log
+
+
+# Ignore test files
+JoshPlayground.cpp
