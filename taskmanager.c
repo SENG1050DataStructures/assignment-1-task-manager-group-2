@@ -13,6 +13,8 @@ typedef struct Task {
 	Task* NextTask;
 } Task;
 
+Task* createNode(int id, char* title, char* description);
+
 
 
 int main(void) {
@@ -21,3 +23,24 @@ int main(void) {
 
 	return 0;
 }
+
+Task* createNode(int id, char* title, char* description) {
+
+	Task* newNode = (Task*)malloc(sizeof(Task));
+
+	if (newNode == NULL) {
+		printf("ERROR: Malloc failure when creating node #%d", id);
+		exit(1);
+	}
+
+	newNode->TaskId = id;
+	strcpy(newNode->Title, title);
+	strcpy(newNode->Description, description);
+	newNode->NextTask = NULL;
+
+
+	return newNode;
+}
+
+
+Task*
