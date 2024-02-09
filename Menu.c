@@ -5,31 +5,46 @@
 #define FALSE 0
 
 enum Menu {
-	INVALID = -2,
-	MAIN_MENU = -1,
-	ADD_TASK_HEAD = 49,
-	ADD_TASK_TAIL = 50,
-	DELETE_TASK = 51,
-	FIND_TASK = 52,
-	PRINT_TASKS = 53,
-	EXIT = 54
+	ADD_TASK_HEAD = 1,
+	ADD_TASK_TAIL = 2,
+	DELETE_TASK = 3,
+	FIND_TASK = 4,
+	PRINT_TASKS = 5,
+	EXIT = 6
 
 };
 
+int getNum(void);
+int replaceChar(char* buffer, char target, char newChar);
 
 void moveCursor(int x, int y);
 void clearScreen(void);
 
-void drawMenu(int input);
-void menuSwitch(int userInput);
+void drawMenu(void);
 
-int getMenuInput(void);
 
 
 //Not sure if I'll need to do input parsing or if people will do their own?
-int getNum(char* buffer);
-char* getStr(char* buffer);
+int getNum(void) {
+	char buffer[100];
+	int num = -1;
 
+	fgets(buffer, 100, stdin);
+	if (sscanf(buffer, "%d", &num) == 0) {
+		num = -1;
+	}
+	return num;
+}
+
+int replaceChar(char* buffer, char target, char newChar) {
+	int replaceCount = 0;
+	for (int i = 0; i < sizeof(buffer); i++) {
+		if (buffer[i] == target) {
+			buffer[i] = newChar;
+		}
+	}
+	return replaceCount; 
+}
 
 
 void moveCursor(int x, int y) {
@@ -43,49 +58,7 @@ void clearScreen(void) {
 
 }
 
-int getMenuInput(void) {
-	int input = -1;
-
-	if (_kbhit() != NULL) {
-		input = _getch();
-		while (_kbhit())_getch();
-	}
-
-	return input;
-}
-void menuSwitch(int userInput) {
-
-	switch (userInput) {
-	case ADD_TASK_HEAD:
-		//Add to head
-		break;
-
-	case ADD_TASK_TAIL:
-		//Add to tail
-		break;
-
-	case DELETE_TASK:
-		//Delete by ID
-		break;
-
-	case FIND_TASK:
-		//Find by index
-		break;
-
-	case PRINT_TASKS:
-		//Print tasks
-		break;
-
-	case EXIT:
-		//Do nothing
-		break;
-
-	default:
-		printf("\a");
-	}
-
-}
-void drawMenu(int input) {
+void drawMenu(void) {
 
 	clearScreen();
 	moveCursor(0, 0);
@@ -104,5 +77,6 @@ void drawMenu(int input) {
 	printf("|                                 |\n");
 	printf("|---------------------------------|\n");
 	printf("\n");
+	printf("\tPlease select: ");
 		
 }
