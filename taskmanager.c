@@ -10,7 +10,11 @@
 int GLOBAL_TASKID = -1;
 
 
+// Prototypes
 typedef struct Task Task;
+Task* createNode(void);
+void addToHead(Task** head);
+void addToTail(Task** head);
 
 struct Task {
 	int TaskId;
@@ -18,10 +22,6 @@ struct Task {
 	char Description[MAX_DESCRIPTION_SIZE];
 	Task* NextTask;
 };
-
-Task* createNode(void);
-void addToHead(Task** head);
-void addToTail(Task** head);
 
 //Josh
 int main(void) {
