@@ -15,6 +15,8 @@ typedef struct Task Task;
 Task* createNode(void);
 void addToHead(Task** head);
 void addToTail(Task** head);
+Task* FindTaskByIndex(Task* head, int choice);
+void FreeList(Task* head);
 
 struct Task {
 	int TaskId;
@@ -49,8 +51,17 @@ int main(void) {
             //Delete by ID
             break;
 
-        case FIND_TASK:
-            //Find by index
+        case FIND_TASK:        
+            clearScreen();
+            moveCursor(0, 0);
+            printf("Enter index: ");
+            int index = getNum();
+
+            clearScreen();
+            moveCursor(0, 0);
+            Task* retrieved = FindTaskByIndex(head, index);
+            printf("Task at index %d: \nID: %d\nTitle: %s\nDescription: %s", 
+                index, retrieved->TaskId, retrieved->Title, retrieved->Description);
             break;
 
         case PRINT_TASKS:
@@ -64,7 +75,12 @@ int main(void) {
         default:
             printf("\a");
         }
+
+        printf("\n\nPress any key to continue.");
+        _getch();
 	}
+
+    FreeList(head);
 
 	return 0;
 }
@@ -129,4 +145,29 @@ void addToTail(Task** head) {
         current = current->NextTask;
     }
     current->NextTask = newTask;
+}
+
+Task* FindTaskByIndex(Task* head, int choice) {
+    Task* current = head;
+    int count = 0;
+    while (current != NULL) {
+        if (count == choice)
+            return(current);
+        count++;
+        current = current->NextTask;
+    }
+    return -1;
+}
+
+void FreeList(Task* head) {
+
+    Task* current = head;
+    Task* newNode;
+
+    while (current != NULL) {
+        newNode = current->NextTask;
+        free(current);
+        current = newNode;
+    }
+
 }
