@@ -1,1 +1,14 @@
-Hey I created the file :0
+Josh's Writeup:
+Abdullah completed two functionalities - FindTaskByIndex & FreeList.
+
+FindTaskByIndex() iterates through the linked list until either:
+a) It finds a NULL ptr - either the head being null or having reached the end of the list.
+	In this case it returns a NULL Task*
+b) It has iterated to the correct index in the list
+	In this case it returns the Task* found there
+
+FreeList() iterates through until it finds a NULL ptr.
+In each iteration, it stores the next item in the list in a temp variable & deletes the current item.
+
+
+------------------------------------------------------------------------------------------------------

@@ -18,7 +18,7 @@ typedef struct Task Task;
 Task* createNode(void);
 void addToHead(Task** head);
 void addToTail(Task** head);
-Task* FindTaskByIndex(Task* head, int choice);
+void FindTaskByIndex(Task* head);
 void FreeList(Task* head);
 void DeleteTaskByTaskId(Task* head);
 void PrintTasks(Task* head);
@@ -42,8 +42,8 @@ int main(void) {
 
 		drawMenu();
 
-		userInput = getNum();
-        switch (userInput) {
+        switch (userInput = getNum()) {
+
         case ADD_TASK_HEAD:
             addToHead(&head);
             break;
@@ -53,24 +53,15 @@ int main(void) {
             break;
 
         case DELETE_TASK:
-            //Delete by ID
+            DeleteTaskByTaskId(head);
             break;
 
         case FIND_TASK:        
-            clearScreen();
-            moveCursor(0, 0);
-            printf("Enter index: ");
-            int index = getNum();
-
-            clearScreen();
-            moveCursor(0, 0);
-            Task* retrieved = FindTaskByIndex(head, index);
-            printf("Task at index %d: \nID: %d\nTitle: %s\nDescription: %s", 
-                index, retrieved->TaskId, retrieved->Title, retrieved->Description);
+            FindTaskByIndex(head);         
             break;
 
         case PRINT_TASKS:
-            //Print tasks
+            PrintTasks(head);
             break;
 
         case EXIT:
@@ -105,7 +96,6 @@ Task* createNode(void) {
 
     //By Marcus & Josh
     clearScreen();
-    moveCursor(0, 0);
     printf("---------------------------\n");
     printf("|Please enter Task details|\n");
     printf("---------------------------\n");
@@ -152,16 +142,31 @@ void addToTail(Task** head) {
     current->NextTask = newTask;
 }
 
-Task* FindTaskByIndex(Task* head, int choice) {
+void FindTaskByIndex(Task* head) {
+    clearScreen();
+    printf("Enter index: ");
+    int index = getNum();
+
+    if ((index = getNum()) == -1) {
+        printf("\n\nInvalid input.\a");
+        return;
+    }
+
     Task* current = head;
     int count = 0;
     while (current != NULL) {
-        if (count == choice)
-            return(current);
+        if (count == index) {
+            printf("Task at index %d: \nID: %d\nTitle: %s\nDescription: %s",
+                index, current->TaskId, current->Title, current->Description);
+            return;
+        }
         count++;
         current = current->NextTask;
     }
-    return -1;
+
+    
+    printf("Index not available in existing list.");
+    
 }
 
 void FreeList(Task* head) {
@@ -180,17 +185,29 @@ void FreeList(Task* head) {
 // Joseph
 void DeleteTaskByTaskId(Task* head)
 {
-    int inputTaskId = kDefault;
-    char input[MAX_ARRAY_SIZE] = { '\0' };
+    clearScreen();
+    printf("Enter Task Id to delete: ");
+    int inputTaskId = -1;
 
-    printf("\nEnter TaskId to delete\n");
-    fgets(input, MAX_ARRAY_SIZE, stdin);
-    sscanf(input, "%d", &inputTaskId);
-    Task** trav, * temp;
-    for (trav = head; *trav != NULL && (*trav)->TaskId != inputTaskId; trav = &(*trav)->NextTask)
-    {
-        
+    if ((inputTaskId = getNum()) == -1) {
+        printf("\n\nInvalid input.\a");
+        return;
     }
+
+    Task** trav, * temp;
+
+
+    //JOSH ATTEMPTING TO DEBUG:
+    //I think this is equivalent?
+    trav = &head;
+    while ((*trav != NULL) && ((*trav)->TaskId != inputTaskId)) {
+        trav = &(*trav)->NextTask;
+    }
+
+    //JOSEPHS ORIGINAL LINE:
+    //for (trav = head; *trav != NULL && (*trav)->TaskId != inputTaskId; trav = &(*trav)->NextTask)
+    //{ 
+    //}
 
     if (*trav != NULL) 
     {
@@ -200,6 +217,7 @@ void DeleteTaskByTaskId(Task* head)
     }
     else
     {
+        clearScreen();
         printf("Task with ID %d not found\n", inputTaskId);
     }
 }
