@@ -1,9 +1,6 @@
 # Ignore build artifacts and executables
-*.o
-*.out
-*.exe
-*.log
-*.opendb
+.vs/
+x64/
 
 # Ignore test files
 JoshPlayground.cpp
