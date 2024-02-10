@@ -54,7 +54,7 @@ int main(void) {
             break;
 
         case DELETE_TASK:
-            DeleteTaskByTaskId(head);
+            DeleteTaskByTaskId(&head);
             break;
 
         case FIND_TASK:        
@@ -186,7 +186,7 @@ void FreeList(Task* head) {
 }
 
 // Joseph
-void DeleteTaskByTaskId(Task* head)
+void DeleteTaskByTaskId(Task** head)
 {
     clearScreen();
     printf("Enter Task Id to delete: ");
@@ -197,43 +197,34 @@ void DeleteTaskByTaskId(Task* head)
         return;
     }
 
+    Task** trav = head;
+    for (; *trav != NULL && (*trav)->TaskId != inputTaskId; trav = &(*trav)->NextTask) {
 
-
-    //JOSEPHS ORIGINAL LINE:
-    Task** trav = &head;
-    Task* temp;
-    for (*trav = head; *trav != NULL && (*trav)->TaskId != inputTaskId; trav = &(*trav)->NextTask) {
     }
 
-    if (*trav != NULL)
-    {
-        temp = *trav;
-        *trav = (*trav)->NextTask;
-        free(temp);
-    }
-    else
-    {
+    if (*trav == NULL) {
         clearScreen();
         printf("Task with ID %d not found\n", inputTaskId);
+        return;
     }
+
+    Task* temp = *trav;
+    *trav = temp->NextTask;
+    free(temp);
 }
 
 void PrintTasks(Task* head)
 {
-    Task* trav = kDefault;
-
-    clearScreen();
-    for (trav = head; trav != NULL; trav = trav->NextTask)
+    if (head == NULL)
     {
-        if (trav != NULL)
-        {
-            printf("Task ID: %d\n", trav->TaskId);
-            printf("Task Title: %s\n", trav->Title);
-            printf("Task Description: %s\n\n", trav->Description);
-        }
-        else
-        {
-            printf("No tasks to display\n");
-        }
+        printf("No tasks to display\n");
+        return;
+    }
+
+    for (Task* trav = head; trav != NULL; trav = trav->NextTask)
+    {
+        printf("\n\n\nTask ID: %d\n", trav->TaskId);
+        printf("Task Title: %s\n", trav->Title);
+        printf("Task Description: %s\n\n", trav->Description);
     }
 }
