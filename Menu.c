@@ -55,14 +55,12 @@ void moveCursor(int x, int y) {
 void clearScreen(void) {
 
 	printf("\033[2J");
-
+	moveCursor(0, 0);
 }
 
 void drawMenu(void) {
 
 	clearScreen();
-	moveCursor(0, 0);
-
 
 	printf("|---------------------------------|\n");
 	printf("|            Main Menu            |\n");

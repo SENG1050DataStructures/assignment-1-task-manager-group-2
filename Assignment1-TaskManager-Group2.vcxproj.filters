@@ -22,6 +22,5 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="assignment1-taskmanager.md" />
-    <None Include="README.md" />
   </ItemGroup>
 </Project>
