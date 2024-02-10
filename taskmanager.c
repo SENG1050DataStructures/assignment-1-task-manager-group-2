@@ -73,8 +73,10 @@ int main(void) {
             printf("\n\n\tInvalid Input.\a");
         }
 
-        printf("\n\n\tPress any key to continue.");
-        _getch();
+        if (userInput != EXIT) {
+            printf("\n\n\tPress any key to continue.");
+            _getch();
+        }
 	}
 
     FreeList(head);
@@ -225,7 +227,7 @@ void PrintTasks(Task* head)
     {
         if (trav != NULL)
         {
-            printf("\n\n\nTask ID: %d\n", trav->TaskId);
+            printf("Task ID: %d\n", trav->TaskId);
             printf("Task Title: %s\n", trav->Title);
             printf("Task Description: %s\n\n", trav->Description);
         }
