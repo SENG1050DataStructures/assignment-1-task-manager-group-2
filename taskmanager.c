@@ -23,6 +23,7 @@ void FreeList(Task* head);
 void DeleteTaskByTaskId(Task* head);
 void PrintTasks(Task* head);
 
+
 struct Task {
 	int TaskId;
 	char Title[MAX_TITLE_SIZE];
@@ -69,10 +70,10 @@ int main(void) {
             break;
 
         default:
-            printf("\a");
+            printf("\n\n\tInvalid Input.\a");
         }
 
-        printf("\n\nPress any key to continue.");
+        printf("\n\n\tPress any key to continue.");
         _getch();
 	}
 
@@ -194,22 +195,15 @@ void DeleteTaskByTaskId(Task* head)
         return;
     }
 
-    Task** trav, * temp;
 
-
-    //JOSH ATTEMPTING TO DEBUG:
-    //I think this is equivalent?
-    trav = &head;
-    while ((*trav != NULL) && ((*trav)->TaskId != inputTaskId)) {
-        trav = &(*trav)->NextTask;
-    }
 
     //JOSEPHS ORIGINAL LINE:
-    //for (trav = head; *trav != NULL && (*trav)->TaskId != inputTaskId; trav = &(*trav)->NextTask)
-    //{ 
-    //}
+    Task** trav = &head;
+    Task* temp;
+    for (*trav = head; *trav != NULL && (*trav)->TaskId != inputTaskId; trav = &(*trav)->NextTask) {
+    }
 
-    if (*trav != NULL) 
+    if (*trav != NULL)
     {
         temp = *trav;
         *trav = (*trav)->NextTask;
@@ -225,10 +219,19 @@ void DeleteTaskByTaskId(Task* head)
 void PrintTasks(Task* head)
 {
     Task* trav = kDefault;
+
+    clearScreen();
     for (trav = head; trav != NULL; trav = trav->NextTask)
     {
-        printf("\n\n\nTask ID: %d\n", trav->TaskId);
-        printf("Task Title: %s\n", trav->Title);
-        printf("Task Description: %s\n\n", trav->Description);
+        if (trav != NULL)
+        {
+            printf("\n\n\nTask ID: %d\n", trav->TaskId);
+            printf("Task Title: %s\n", trav->Title);
+            printf("Task Description: %s\n\n", trav->Description);
+        }
+        else
+        {
+            printf("No tasks to display\n");
+        }
     }
 }
