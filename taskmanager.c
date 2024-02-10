@@ -7,8 +7,6 @@
 #define MAX_TITLE_SIZE 100
 #define MAX_DESCRIPTION_SIZE 100
 #define MAX_ARRAY_SIZE 100
-#define kDefault 0
-#define _CRT_SECURE_NO_WARNINGS
 
 int GLOBAL_TASKID = -1;
 
@@ -18,9 +16,10 @@ typedef struct Task Task;
 Task* createNode(void);
 void addToHead(Task** head);
 void addToTail(Task** head);
+void DeleteTaskByTaskId(Task** head);
+
 void FindTaskByIndex(Task* head);
 void FreeList(Task* head);
-void DeleteTaskByTaskId(Task* head);
 void PrintTasks(Task* head);
 
 
@@ -145,12 +144,19 @@ void addToTail(Task** head) {
     current->NextTask = newTask;
 }
 
+//Abdullah
 void FindTaskByIndex(Task* head) {
+
     clearScreen();
+
+    if (head == NULL) {
+        printf("No objects available in list.");
+        return;
+    }
     printf("Enter index: ");
     int index = getNum();
 
-    if ((index = getNum()) == -1) {
+    if (index == -1) {
         printf("\n\nInvalid input.\a");
         return;
     }
@@ -166,12 +172,10 @@ void FindTaskByIndex(Task* head) {
         count++;
         current = current->NextTask;
     }
-
-    
     printf("Index not available in existing list.");
-    
 }
 
+//Abdullah
 void FreeList(Task* head) {
 
     Task* current = head;
@@ -215,6 +219,7 @@ void DeleteTaskByTaskId(Task** head)
 
 void PrintTasks(Task* head)
 {
+    clearScreen();
     if (head == NULL)
     {
         printf("No tasks to display\n");
@@ -223,7 +228,7 @@ void PrintTasks(Task* head)
 
     for (Task* trav = head; trav != NULL; trav = trav->NextTask)
     {
-        printf("\n\n\nTask ID: %d\n", trav->TaskId);
+        printf("Task ID : % d\n", trav->TaskId);
         printf("Task Title: %s\n", trav->Title);
         printf("Task Description: %s\n\n", trav->Description);
     }
