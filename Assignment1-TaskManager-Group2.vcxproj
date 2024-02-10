@@ -119,7 +119,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="JoshPlayground.cpp" />
     <ClCompile Include="taskmanager.c" />
   </ItemGroup>
   <ItemGroup>

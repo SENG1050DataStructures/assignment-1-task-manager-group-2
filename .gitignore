@@ -3,7 +3,7 @@
 *.out
 *.exe
 *.log
-
+*.opendb
 
 # Ignore test files
 JoshPlayground.cpp

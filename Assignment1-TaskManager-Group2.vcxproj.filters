@@ -15,11 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="JoshPlayground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="taskmanager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="assignment1-taskmanager.md" />
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

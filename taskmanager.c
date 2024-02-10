@@ -6,6 +6,9 @@
 
 #define MAX_TITLE_SIZE 100
 #define MAX_DESCRIPTION_SIZE 100
+#define MAX_ARRAY_SIZE 100
+#define kDefault 0
+#define _CRT_SECURE_NO_WARNINGS
 
 int GLOBAL_TASKID = -1;
 
@@ -17,13 +20,15 @@ void addToHead(Task** head);
 void addToTail(Task** head);
 Task* FindTaskByIndex(Task* head, int choice);
 void FreeList(Task* head);
+void DeleteTaskByTaskId(Task* head);
+void PrintTasks(Task* head);
 
 struct Task {
 	int TaskId;
 	char Title[MAX_TITLE_SIZE];
 	char Description[MAX_DESCRIPTION_SIZE];
 	Task* NextTask;
-};
+}; 
 
 //Josh
 int main(void) {
@@ -170,4 +175,42 @@ void FreeList(Task* head) {
         current = newNode;
     }
 
+}
+
+// Joseph
+void DeleteTaskByTaskId(Task* head)
+{
+    int inputTaskId = kDefault;
+    char input[MAX_ARRAY_SIZE] = { '\0' };
+
+    printf("\nEnter TaskId to delete\n");
+    fgets(input, MAX_ARRAY_SIZE, stdin);
+    sscanf(input, "%d", &inputTaskId);
+    Task** trav, * temp;
+    for (trav = head; *trav != NULL && (*trav)->TaskId != inputTaskId; trav = &(*trav)->NextTask)
+    {
+        
+    }
+
+    if (*trav != NULL) 
+    {
+        temp = *trav;
+        *trav = (*trav)->NextTask;
+        free(temp);
+    }
+    else
+    {
+        printf("Task with ID %d not found\n", inputTaskId);
+    }
+}
+
+void PrintTasks(Task* head)
+{
+    Task* trav = kDefault;
+    for (trav = head; trav != NULL; trav = trav->NextTask)
+    {
+        printf("\n\n\nTask ID: %d\n", trav->TaskId);
+        printf("Task Title: %s\n", trav->Title);
+        printf("Task Description: %s\n\n", trav->Description);
+    }
 }
