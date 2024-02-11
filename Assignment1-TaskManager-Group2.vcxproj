@@ -119,6 +119,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Menu.c" />
     <ClCompile Include="taskmanager.c" />
   </ItemGroup>
   <ItemGroup>
