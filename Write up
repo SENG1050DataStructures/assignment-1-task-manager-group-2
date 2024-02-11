@@ -30,3 +30,17 @@ Marcus's Writeup:
 Josh R's menu is a while loop that will wait for the person to select "exit" otherwise itll keep running, and itll use "escape codes" to wipe the screen and redo every loop. 
 If the person selects a correct menu item it'll switch to the function that calls it, if the person doesnt input a valid menu item itll say invalid.
 He also created the CreateNode function which uses Malloc to create a new Task, and then prompts the user to fill out details.
+
+
+------------------------------------------------------------------------------------------------------
+Abdul's Writeup:
+Joseph completed two functionalities - DeleteTaskByTaskId & PrintTasks.
+
+  DeleteTaskByTaskId() 
+	a) Asks the user for a task ID & checks for an empty list.
+	b) It iterates through the list until the end of the list OR the correct TaskId is found. 
+	c) If the ID wasn't found, print an error message.
+	d) If it's found the ID, it deletes the entered Task.
+  PrintTasks()
+	a) if no task prints no tasks are found.
+	b) Iterates through the list and prints TaskID, Task Title, and Task Description.
