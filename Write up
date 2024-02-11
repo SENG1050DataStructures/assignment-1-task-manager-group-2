@@ -33,7 +33,7 @@ He also created the CreateNode function which uses Malloc to create a new Task, 
 
 
 ------------------------------------------------------------------------------------------------------
-Abdul's Writeup:
+Abdullah's Writeup:
 Joseph completed two functionalities - DeleteTaskByTaskId & PrintTasks.
 
   DeleteTaskByTaskId() 
