@@ -23,3 +23,10 @@ addToTail appends a new Task node to the end of the Linked list by also using th
 It then checks if the linked list is empty (if *head is null), if it is then the new node is simply set as the head of the list.
 If it's not empty then the function will iterate through the list until it reaches the last node, once it reaches the last node then
 the last node's NextTask pointer will be set to point to the new node.
+
+
+------------------------------------------------------------------------------------------------------
+Marcus's Writeup:
+Josh R's menu is a while loop that will wait for the person to select "exit" otherwise itll keep running, and itll use "escape codes" to wipe the screen and redo every loop. 
+If the person selects a correct menu item it'll switch to the function that calls it, if the person doesnt input a valid menu item itll say invalid.
+He also created the CreateNode function which uses Malloc to create a new Task, and then prompts the user to fill out details.
