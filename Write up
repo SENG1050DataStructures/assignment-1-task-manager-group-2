@@ -12,3 +12,14 @@ In each iteration, it stores the next item in the list in a temp variable & dele
 
 
 ------------------------------------------------------------------------------------------------------
+Joseph's Writeup:
+Marcus completed two functionalities - addToHead and addToTail.
+
+addToHead() adds a new Task node to the beginning of the linked list by using the createNode() function.
+It will then check if the list is not empty, if it is not then the new node's (Task) NextTask pointer is set to the current
+head of the list, making it the new head of the list
+
+addToTail appends a new Task node to the end of the Linked list by also using the createNode() function.
+It then checks if the linked list is empty (if *head is null), if it is then the new node is simply set as the head of the list.
+If it's not empty then the function will iterate through the list until it reaches the last node, once it reaches the last node then
+the last node's NextTask pointer will be set to point to the new node.
