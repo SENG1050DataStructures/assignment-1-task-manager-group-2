@@ -148,9 +148,8 @@ void addToTail(Task** head) {
 void FindTaskByIndex(Task* head) {
 
     clearScreen();
-
     if (head == NULL) {
-        printf("No objects available in list.");
+        printf("No Tasks found.\a");
         return;
     }
     printf("Enter index: ");
@@ -161,6 +160,7 @@ void FindTaskByIndex(Task* head) {
         return;
     }
 
+    clearScreen();
     Task* current = head;
     int count = 0;
     while (current != NULL) {
@@ -193,9 +193,12 @@ void FreeList(Task* head) {
 void DeleteTaskByTaskId(Task** head)
 {
     clearScreen();
+    if (*head == NULL) {
+        printf("No Tasks found.\a");
+        return;
+    }
     printf("Enter Task Id to delete: ");
     int inputTaskId = -1;
-
     if ((inputTaskId = getNum()) == -1) {
         printf("\n\nInvalid input.\a");
         return;
@@ -217,12 +220,13 @@ void DeleteTaskByTaskId(Task** head)
     free(temp);
 }
 
+//Joseph
 void PrintTasks(Task* head)
 {
     clearScreen();
     if (head == NULL)
     {
-        printf("No tasks to display\n");
+        printf("No Tasks found.\a");
         return;
     }
 

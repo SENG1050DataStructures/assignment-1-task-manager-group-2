@@ -38,7 +38,7 @@ int getNum(void) {
 
 int replaceChar(char* buffer, char target, char newChar) {
 	int replaceCount = 0;
-	for (int i = 0; i < sizeof(buffer); i++) {
+	for (int i = 0; i < strlen(buffer); i++) {
 		if (buffer[i] == target) {
 			buffer[i] = newChar;
 		}
