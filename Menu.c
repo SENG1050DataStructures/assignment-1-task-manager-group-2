@@ -1,30 +1,5 @@
-#include <stdio.h>
-#include <conio.h>
+#include "Menu.h"
 
-#define TRUE 1
-#define FALSE 0
-
-enum Menu {
-	ADD_TASK_HEAD = 1,
-	ADD_TASK_TAIL = 2,
-	DELETE_TASK = 3,
-	FIND_TASK = 4,
-	PRINT_TASKS = 5,
-	EXIT = 6
-
-};
-
-int getNum(void);
-int replaceChar(char* buffer, char target, char newChar);
-
-void moveCursor(int x, int y);
-void clearScreen(void);
-
-void drawMenu(void);
-
-
-
-//Not sure if I'll need to do input parsing or if people will do their own?
 int getNum(void) {
 	char buffer[100];
 	int num = -1;

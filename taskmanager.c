@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Menu.c"
+#include "Menu.h"
 
 #define MAX_TITLE_SIZE 100
 #define MAX_DESCRIPTION_SIZE 100
