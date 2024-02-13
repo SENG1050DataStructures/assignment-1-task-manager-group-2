@@ -6,7 +6,7 @@
 
 #define MAX_TITLE_SIZE 100
 #define MAX_DESCRIPTION_SIZE 100
-#define MAX_ARRAY_SIZE 100
+
 
 int GLOBAL_TASKID = -1;
 
